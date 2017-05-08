@@ -28,8 +28,8 @@ Vagrant.configure(2) do |config|
   config.vm.box = 'rhel7-vagrant'
   config.ssh.forward_agent = true
   config.ssh.insert_key = false
-  config.registration.username = 'examgoposky'
-  config.registration.password = 'Narasimha'
+  config.registration.username = ENV['SUB_USERNAME']
+  config.registration.password = ENV['SUB_PASSWORD']
 
 
   config.vm.define "node1" do |node1|
