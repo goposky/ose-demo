@@ -5,6 +5,7 @@ The VagrantFile was tested and working on MacOS Sierra and Fedora 22.
 
 ### Host pre-requisites
 Software requirements: virtualbox, vagrant, ansible
+
 Hardware requirements: 
 
 ### Setup
