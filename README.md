@@ -1,12 +1,13 @@
 ## Openshift v3 demo
 
+**Incomplete. To be updated shortly.**
+
 This is a demo openshift v3 environment consisting of 1 master, 1 node, and a registry host.
 The VagrantFile was tested and working on MacOS Sierra and Fedora 22.
 
-### Host pre-requisites
-Software requirements: virtualbox, vagrant, ansible
-
-Hardware requirements: 
+### Host machine pre-requisites
+Virtualbox, vagrant and ansible.
+Atleast 8GB RAM recommended.
 
 ### Setup
 ```bash
