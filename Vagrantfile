@@ -32,6 +32,18 @@ Vagrant.configure(2) do |config|
   config.registration.password = ENV['SUB_PASSWORD']
 
 
+  config.vm.define "storage" do |storage|
+    storage.vm.hostname = "storage"
+    storage.vm.network "private_network", ip: "10.1.2.17", auto_config: false
+    #storage.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2020, auto_correct: true
+    storage.vm.provider "virtualbox" do |v, override|
+      #v.cpus   = VM_CPU
+      v.customize ["modifyvm", :id, "--ioapic", "on"]
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+  end
+
   config.vm.define "node1" do |node1|
     node1.vm.hostname = "node1"
     node1.vm.network "private_network", ip: "10.1.2.16", auto_config: false
@@ -55,21 +67,7 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.vm.define "storage" do |storage|
-    storage.vm.hostname = "storage"
-    storage.vm.network "private_network", ip: "10.1.2.17", auto_config: false
-    #storage.vm.network "forwarded_port", id: 'ssh', guest: 22, host: 2020, auto_correct: true
-    storage.vm.provider "virtualbox" do |v, override|
-      #v.cpus   = VM_CPU
-      v.customize ["modifyvm", :id, "--ioapic", "on"]
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-    end
-  end
-
-  config.vm.provision "shell", run: "always", inline: <<-SHELL
-    #Bring up network interface
-    #ifup enp0s8
-    #ls -ltr
-  SHELL
+  #config.vm.provision "shell", run: "always", inline: <<-SHELL
+    # Do something
+  #SHELL
 end
